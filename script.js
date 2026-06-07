@@ -122,7 +122,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
               num.innerText = Math.ceil(count);
               requestAnimationFrame(updateCount);
             } else {
-              num.innerText = target + (target > 20 ? '+' : '');
+              num.innerText = target;
             }
           }
           updateCount();
@@ -170,16 +170,23 @@ function updateLocalTime() {
   const timeDisplay = document.getElementById('cc-time-display');
   if(timeDisplay) {
     const now = new Date();
-    // format like 2024-06-14 16:43:33 UTC
-    const iso = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
-    timeDisplay.innerText = iso;
+    const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+    
+    const pad = (n) => n.toString().padStart(2, '0');
+    const yyyy = istTime.getFullYear();
+    const mm = pad(istTime.getMonth() + 1);
+    const dd = pad(istTime.getDate());
+    const hh = pad(istTime.getHours());
+    const min = pad(istTime.getMinutes());
+    const ss = pad(istTime.getSeconds());
+    
+    timeDisplay.innerText = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss} IST`;
   }
 }
 setInterval(updateLocalTime, 1000);
 updateLocalTime();
 
-// // --- 2D Implementations ---
-// We use simple SVG generation for the Radar Chart and HTML nodes + SVG paths for the Network Graph.
+// --- 2D Radar Chart ---
 
 function draw2DRadarChart() {
   const container = document.getElementById('radar-2d-container');
@@ -245,7 +252,7 @@ function draw2DRadarChart() {
   container.innerHTML = svg;
 }
 
-function draw2DNetworkGraph() {
+function initD3NetworkGraph() {
   const container = document.getElementById('network-2d-container');
   if(!container) return;
 
@@ -256,97 +263,150 @@ function draw2DNetworkGraph() {
   const height = container.clientHeight;
 
   const techs = [
-    { id: 'react', label: 'React', icon: 'fa-brands fa-react', px: 0.15, py: 0.2 },
-    { id: 'next', label: 'Next.js', icon: 'fa-brands fa-node-js', px: 0.3, py: 0.1 },
-    { id: 'js', label: 'JavaScript', icon: 'fa-brands fa-js', px: 0.35, py: 0.4 },
-    { id: 'python', label: 'Python', icon: 'fa-brands fa-python', px: 0.85, py: 0.3 },
-    { id: 'fastapi', label: 'FastAPI', icon: 'fa-solid fa-bolt', px: 0.7, py: 0.15 },
-    { id: 'node', label: 'Node.js', icon: 'fa-brands fa-node', px: 0.6, py: 0.5 },
-    { id: 'db', label: 'PostgreSQL', icon: 'fa-solid fa-database', px: 0.8, py: 0.7 },
-    { id: 'mongo', label: 'MongoDB', icon: 'fa-solid fa-leaf', px: 0.65, py: 0.85 },
-    { id: 'gcp', label: 'GCP', icon: 'fa-brands fa-google', px: 0.3, py: 0.75 },
-    { id: 'aws', label: 'AWS', icon: 'fa-brands fa-aws', px: 0.15, py: 0.6 },
-    { id: 'docker', label: 'Docker', icon: 'fa-brands fa-docker', px: 0.45, py: 0.85 },
-    { id: 'three', label: 'Three.js', icon: 'fa-solid fa-cube', px: 0.5, py: 0.2 }
+    { id: 'react', label: 'React', icon: 'fa-brands fa-react' },
+    { id: 'next', label: 'Next.js', icon: 'fa-brands fa-node-js' },
+    { id: 'js', label: 'JavaScript', icon: 'fa-brands fa-js' },
+    { id: 'python', label: 'Python', icon: 'fa-brands fa-python' },
+    { id: 'fastapi', label: 'FastAPI', icon: 'fa-solid fa-bolt' },
+    { id: 'node', label: 'Node.js', icon: 'fa-brands fa-node' },
+    { id: 'db', label: 'PostgreSQL', icon: 'fa-solid fa-database' },
+    { id: 'mongo', label: 'MongoDB', icon: 'fa-solid fa-leaf' },
+    { id: 'gcp', label: 'GCP', icon: 'fa-brands fa-google' },
+    { id: 'aws', label: 'AWS', icon: 'fa-brands fa-aws' },
+    { id: 'docker', label: 'Docker', icon: 'fa-brands fa-docker' },
+    { id: 'three', label: 'Three.js', icon: 'fa-solid fa-cube' }
   ];
 
   const connections = [
-    ['react', 'next'], ['react', 'js'], ['next', 'js'], ['next', 'node'],
-    ['js', 'node'], ['node', 'mongo'], ['python', 'fastapi'], ['fastapi', 'db'],
-    ['fastapi', 'docker'], ['node', 'docker'], ['gcp', 'docker'], ['aws', 'docker'],
-    ['js', 'three'], ['react', 'three']
+    { source: 'react', target: 'next' }, { source: 'react', target: 'js' }, { source: 'next', target: 'js' }, { source: 'next', target: 'node' },
+    { source: 'js', target: 'node' }, { source: 'node', target: 'mongo' }, { source: 'python', target: 'fastapi' }, { source: 'fastapi', target: 'db' },
+    { source: 'fastapi', target: 'docker' }, { source: 'node', target: 'docker' }, { source: 'gcp', target: 'docker' }, { source: 'aws', target: 'docker' },
+    { source: 'js', target: 'three' }, { source: 'react', target: 'three' }
   ];
 
-  // Map to pixel coordinates
-  const nodes = techs.map(t => {
-    return {
-      ...t,
-      x: t.px * width,
-      y: t.py * height
-    };
-  });
-
   // Create SVG layer for lines
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("class", "network-svg-layer");
-  container.appendChild(svg);
+  const svg = d3.select(container)
+    .append("svg")
+    .attr("class", "network-svg-layer")
+    .attr("width", width)
+    .attr("height", height);
+
+  // Initialize force simulation
+  const simulation = d3.forceSimulation(techs)
+    .force("link", d3.forceLink(connections).id(d => d.id).distance(120))
+    .force("charge", d3.forceManyBody().strength(-500))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collide", d3.forceCollide().radius(50));
 
   // Draw lines
-  const paths = [];
-  connections.forEach(conn => {
-    const n1 = nodes.find(n => n.id === conn[0]);
-    const n2 = nodes.find(n => n.id === conn[1]);
-    if (n1 && n2) {
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      
-      // Simple Bezier curve
-      const dx = Math.abs(n2.x - n1.x);
-      const dy = Math.abs(n2.y - n1.y);
-      const cx = (n1.x + n2.x) / 2 + (dy * 0.2); // slight bend
-      const cy = (n1.y + n2.y) / 2 - (dx * 0.2);
-
-      const d = `M ${n1.x} ${n1.y} Q ${cx} ${cy} ${n2.x} ${n2.y}`;
-      path.setAttribute("d", d);
-      path.setAttribute("class", "network-path");
-      path.dataset.source = n1.id;
-      path.dataset.target = n2.id;
-      svg.appendChild(path);
-      paths.push(path);
-    }
-  });
+  const link = svg.append("g")
+    .selectAll("path")
+    .data(connections)
+    .join("path")
+    .attr("class", "network-path")
+    .attr("data-source", d => d.source.id)
+    .attr("data-target", d => d.target.id);
 
   // Draw HTML nodes
-  nodes.forEach(n => {
-    const div = document.createElement('div');
-    div.className = 'network-node';
-    div.style.left = `${n.x}px`;
-    div.style.top = `${n.y}px`;
-    div.innerHTML = `<i class="${n.icon}"></i> <span>${n.label}</span>`;
-    
-    // Hover effects
-    div.addEventListener('mouseenter', () => {
-      paths.forEach(p => {
-        if (p.dataset.source === n.id || p.dataset.target === n.id) {
-          p.classList.add('active');
-        }
-      });
-    });
-    div.addEventListener('mouseleave', () => {
-      paths.forEach(p => p.classList.remove('active'));
+  const nodeDivs = d3.select(container)
+    .selectAll(".network-node")
+    .data(techs)
+    .join("div")
+    .attr("class", "network-node")
+    .html(d => `<i class="${d.icon}"></i> <span>${d.label}</span>`)
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+  // Hover effects
+  nodeDivs.on('mouseenter', (event, d) => {
+    link.classed('active', l => l.source.id === d.id || l.target.id === d.id);
+  });
+  nodeDivs.on('mouseleave', () => {
+    link.classed('active', false);
+  });
+
+  // Tick function to update positions
+  simulation.on("tick", () => {
+    link.attr("d", d => {
+      // Simple Bezier curve
+      const dx = Math.abs(d.target.x - d.source.x);
+      const dy = Math.abs(d.target.y - d.source.y);
+      const cx = (d.source.x + d.target.x) / 2 + (dy * 0.1); 
+      const cy = (d.source.y + d.target.y) / 2 - (dx * 0.1);
+      return `M ${d.source.x} ${d.source.y} Q ${cx} ${cy} ${d.target.x} ${d.target.y}`;
     });
 
-    container.appendChild(div);
+    nodeDivs
+      .style("left", d => `${d.x}px`)
+      .style("top", d => `${d.y}px`);
   });
+
+  // Drag functions
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
 }
 
 // Initialize
 if(document.getElementById('radar-2d-container')) {
   draw2DRadarChart();
-  draw2DNetworkGraph();
+  initD3NetworkGraph();
 
   // Redraw on resize
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    draw2DRadarChart();
-    draw2DNetworkGraph();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      draw2DRadarChart();
+      initD3NetworkGraph();
+    }, 200);
+  });
+}
+
+// --- Contact Form Handler ---
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!name || !email || !message) return;
+    
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    
+    window.location.href = `mailto:kotkarsarthak2004@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Visual feedback
+    const btn = contactForm.querySelector('button');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Email Client Opened!';
+    btn.style.borderColor = 'var(--cyan)';
+    btn.style.color = 'var(--cyan)';
+    
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      contactForm.reset();
+    }, 3000);
   });
 }

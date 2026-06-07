@@ -224,11 +224,6 @@ section {
   text-align: center;
   background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-color) 100%);
 }
-#canvas-container {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1;
-}
 .hero-content {
   z-index: 1;
   max-width: 800px;
@@ -334,6 +329,13 @@ section {
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-code);
   color: var(--text-muted);
+  overflow: hidden;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 .profile-glitch {
   position: absolute;
@@ -394,10 +396,7 @@ section {
   font-size: 2rem;
   font-family: var(--font-heading);
   white-space: nowrap;
-}
-.cc-header .section-title::before,
-.cc-header .section-title::after {
-  display: none;
+  color: var(--text-main);
 }
 .cc-core-container, .cc-tech-container {
   background: rgba(10, 10, 15, 0.8);
@@ -424,12 +423,6 @@ section {
 .cc-radar-wrapper {
   position: relative;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
-}
-#radar-canvas-container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0; left: 0;
 }
 .cc-id-card {
   padding: 3rem;

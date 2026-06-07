@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sarthak Ajit Kotkar | Full-Stack Developer</title>
-  <meta name="description" content="Portfolio of Sarthak Ajit Kotkar, Computer Engineering Student & AI Systems Developer">
-  
+  <meta name="description"
+    content="Portfolio of Sarthak Ajit Kotkar, Computer Engineering Student & AI Systems Developer">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="grain-overlay"></div>
-  
+
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-trail" id="cursor-trail"></div>
 
@@ -38,7 +45,8 @@
       <p class="tagline">Building immersive digital experiences at the intersection of design and engineering.</p>
       <div class="cta-buttons">
         <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-code"></i> View My Work</a>
-        <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+        <a href="https://drive.google.com/file/d/1nvxoqWBD5hRcGXXH2zhkbtepxKcdva5l/view?usp=sharing" target="_blank"
+          class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
       </div>
     </div>
     <a href="#about" class="scroll-down">
@@ -51,20 +59,25 @@
     <div class="about-content">
       <div class="profile-img-container animate-on-scroll">
         <div class="profile-glitch"></div>
-        <div class="profile-img">[ IMAGE PLACEHOLDER ]</div>
+        <div class="profile-img"><img src="Sarthak Kotkar.JPG" alt="Sarthak Kotkar"></div>
       </div>
       <div class="about-text animate-on-scroll" style="transition-delay: 0.2s">
-        <p style="margin-bottom: 1.5rem; color: var(--text-main)">Computer Engineering student (2026) with experience building AI-powered and cloud-native full-stack systems, including autonomous debugging pipelines, real-time tracking platforms, and misinformation detection systems.</p>
-        <p>Skilled in designing scalable backend architectures, APIs, and AI-integrated applications using modern web technologies and cloud platforms.</p>
-        
+        <p style="margin-bottom: 1.5rem; color: var(--text-main)">Computer Engineering student (2026) with experience
+          building AI-powered and cloud-native full-stack systems, including autonomous debugging pipelines, real-time
+          tracking platforms, and misinformation detection systems.</p>
+        <p>Skilled in designing scalable backend architectures, APIs, and AI-integrated applications using modern web
+          technologies and cloud platforms.</p>
+
         <div class="stats-container" id="stats">
           <div class="stat-item">
             <span class="stat-number" data-target="2026">0</span>
             <span class="stat-label">Graduation</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" data-target="8">0</span><span style="font-size:2.5rem;font-weight:700;color:var(--cyan);font-family:var(--font-code)">.52</span>
-            <span class="stat-label">CGPA</span>
+            <div style="font-size:2.5rem;font-weight:700;color:var(--cyan);font-family:var(--font-code);">
+              <span class="stat-number" data-target="8" style="display: inline-block;">0</span><span>.52</span>
+            </div>
+            <span class="stat-label" style="display: block;">CGPA</span>
           </div>
           <div class="stat-item">
             <span class="stat-number" data-target="15">0</span>
@@ -73,42 +86,68 @@
         </div>
 
         <div style="margin-top: 3rem;">
-          <h3 style="color: var(--violet); margin-bottom: 1.5rem; font-family: var(--font-code);">Experience & Education</h3>
-          
-          <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
-            <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;"></div>
+          <h3 style="color: var(--violet); margin-bottom: 1.5rem; font-family: var(--font-code);">Experience & Education
+          </h3>
+
+          <div
+            style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
+            <div
+              style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;">
+            </div>
             <h4 style="color: var(--text-main); font-size: 1.2rem;">Software Engineer Intern</h4>
-            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.2rem; font-family: var(--font-code);">Equations Work IT Services Pvt. Ltd. | Jan 2026</p>
-            <p style="margin-bottom: 0.8rem;"><a href="https://app.swagofindia.com/" target="_blank" style="color: var(--violet); font-size: 0.85rem; text-decoration: none; font-family: var(--font-code);"><i class="fa-solid fa-link"></i> SwagofIndia</a></p>
+            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.2rem; font-family: var(--font-code);">
+              Equations Work IT Services Pvt. Ltd. | Jan 2026</p>
+            <p style="margin-bottom: 0.8rem;"><a href="https://app.swagofindia.com/" target="_blank"
+                style="color: var(--violet); font-size: 0.85rem; text-decoration: none; font-family: var(--font-code);"><i
+                  class="fa-solid fa-link"></i> SwagofIndia</a></p>
             <p style="font-size: 0.9rem;">
-              • Architected a cross-platform social impact application using <strong>React Native</strong> and <strong>TypeScript</strong>.<br>
-              • Integrated <strong>Firebase</strong> services to build a real-time volunteer coordination system with role-based access.<br>
-              • Engineered a gamification system with XP validation and implemented geospatial querying features using Expo Location.
+              • Architected a cross-platform social impact application using <strong>React Native</strong> and
+              <strong>TypeScript</strong>.<br>
+              • Integrated <strong>Firebase</strong> services to build a real-time volunteer coordination system with
+              role-based access.<br>
+              • Engineered a gamification system with XP validation and implemented geospatial querying features using
+              Expo Location.
             </p>
           </div>
 
-          <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
-            <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;"></div>
+          <div
+            style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
+            <div
+              style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;">
+            </div>
             <h4 style="color: var(--text-main); font-size: 1.2rem;">Project Intern</h4>
-            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.8rem; font-family: var(--font-code);">Equations Work IT Services Pvt. Ltd. | Jul 2025 - May 2026</p>
+            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.8rem; font-family: var(--font-code);">
+              Equations Work IT Services Pvt. Ltd. | Jul 2025 - May 2026</p>
             <p style="font-size: 0.9rem;">
-              • Architected the frontend of <strong>ResumeAI</strong>, an intelligent recruitment platform, using React 19, Tailwind CSS, and Radix UI.<br>
-              • Integrated backend <strong>FastAPI</strong> services for AI-driven candidate evaluation (BGE-Large, CodeBERT, Gemini LLM).<br>
-              • Implemented sophisticated state management and dynamic routing for the recruiter dashboard and candidate pipelines.
+              • Architected the frontend of <strong>ResumeAI</strong>, an intelligent recruitment platform, using React
+              19, Tailwind CSS, and Radix UI.<br>
+              • Integrated backend <strong>FastAPI</strong> services for AI-driven candidate evaluation (BGE-Large,
+              CodeBERT, Gemini LLM).<br>
+              • Implemented sophisticated state management and dynamic routing for the recruiter dashboard and candidate
+              pipelines.
             </p>
           </div>
 
-          <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
-            <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;"></div>
+          <div
+            style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; position: relative;">
+            <div
+              style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;">
+            </div>
             <h4 style="color: var(--text-main); font-size: 1.2rem;">Software Engineer Intern</h4>
-            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.8rem; font-family: var(--font-code);">Equations Work IT Services Pvt. Ltd. | Jan 2025 - Mar 2025</p>
-            <p style="font-size: 0.9rem;">• Developed an AI-powered knowledge graph using machine learning models to extract and structure insights from complex data.<br>• Built backend APIs with Flask and visualized relationships in 3D using Babylon.js and Neo4j.</p>
+            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.8rem; font-family: var(--font-code);">
+              Equations Work IT Services Pvt. Ltd. | Jan 2025 - Mar 2025</p>
+            <p style="font-size: 0.9rem;">• Developed an AI-powered knowledge graph using machine learning models to
+              extract and structure insights from complex data.<br>• Built backend APIs with Flask and visualized
+              relationships in 3D using Babylon.js and Neo4j.</p>
           </div>
 
           <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; position: relative;">
-            <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--violet); border-radius: 50%;"></div>
+            <div
+              style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--violet); border-radius: 50%;">
+            </div>
             <h4 style="color: var(--text-main); font-size: 1.2rem;">BE Computer Engineering</h4>
-            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.5rem; font-family: var(--font-code);">Marathwada Mitra Mandal College of Engineering | 2026</p>
+            <p style="color: var(--cyan); font-size: 0.9rem; margin-bottom: 0.5rem; font-family: var(--font-code);">
+              Marathwada Mitra Mandal College of Engineering | 2026</p>
           </div>
         </div>
       </div>
@@ -130,7 +169,8 @@
           <div id="radar-2d-container"></div>
         </div>
         <div class="cc-id-card">
-          <div class="id-row"><span class="id-label">DEVELOPER:</span> <span class="id-value">SARTHAK AJIT KOTKAR</span></div>
+          <div class="id-row"><span class="id-label">DEVELOPER:</span> <span class="id-value">SARTHAK AJIT KOTKAR</span>
+          </div>
           <div class="id-row"><span class="id-label">ID:</span> <span class="id-value">SK-0094</span></div>
           <div class="id-row"><span class="id-label">STATUS:</span> <span class="id-value cyan">ACTIVE</span></div>
           <div class="id-row"><span class="id-label">CLEARANCE:</span> <span class="id-value">LEVEL 5</span></div>
@@ -159,13 +199,15 @@
           <div class="project-tags">
             <span>FastAPI</span><span>Docker</span><span>AWS</span><span>Bedrock</span>
           </div>
-          <p class="project-desc">AI-powered debugging system that converts natural-language bug reports into executable scripts via a LangGraph-based multi-agent pipeline.</p>
+          <p class="project-desc">AI-powered debugging system that converts natural-language bug reports into executable
+            scripts via a LangGraph-based multi-agent pipeline.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/Bug_Reproducer" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://github.com/Inward17/Bug_Reproducer" target="_blank"><i class="fa-brands fa-github"></i> [
+              GitHub ]</a>
           </div>
         </div>
       </div>
-      
+
       <!-- Project 2: TruthLens -->
       <div class="project-wrapper animate-on-scroll cascade-2">
         <div class="project-card">
@@ -173,14 +215,17 @@
           <div class="project-tags">
             <span>React</span><span>FastAPI</span><span>GCP</span><span>Vertex AI</span>
           </div>
-          <p class="project-desc">Full-stack misinformation detection system engineered with a dual-AI backend (Gemini API & Vertex AI) for deep fact-checking and analysis.</p>
+          <p class="project-desc">Full-stack misinformation detection system engineered with a dual-AI backend (Gemini
+            API & Vertex AI) for deep fact-checking and analysis.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/misinformation-combating-tool" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
-            <a href="https://misinformation-74574.web.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
+            <a href="https://github.com/Inward17/misinformation-combating-tool" target="_blank"><i
+                class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://misinformation-74574.web.app/" target="_blank"><i
+                class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
           </div>
         </div>
       </div>
-      
+
       <!-- Project 3: YatriSuraksha -->
       <div class="project-wrapper animate-on-scroll cascade-3">
         <div class="project-card">
@@ -188,9 +233,10 @@
           <div class="project-tags">
             <span>React</span><span>FastAPI</span><span>MongoDB</span><span>WebSockets</span>
           </div>
-          <p class="project-desc">Real-time tourist safety system with live map tracking and an AI anomaly detection module using geospatial queries for identifying risks.</p>
+          <p class="project-desc">Real-time tourist safety system with live map tracking and an AI anomaly detection
+            module using geospatial queries for identifying risks.</p>
           <div class="project-links">
-            <a href="#"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://github.com/Inward17/Tourist_Geo_Safety" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
           </div>
         </div>
       </div>
@@ -202,10 +248,13 @@
           <div class="project-tags">
             <span>NestJS</span><span>SvelteKit</span><span>PostgreSQL</span><span>Redis</span>
           </div>
-          <p class="project-desc">A multi-tenant platform for managing projects with strict data isolation, RBAC, real-time WebSocket updates, and BullMQ async processing.</p>
+          <p class="project-desc">A multi-tenant platform for managing projects with strict data isolation, RBAC,
+            real-time WebSocket updates, and BullMQ async processing.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/multi-tenant-saas-platform" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
-            <a href="https://multi-tenant-saas-platform-ten.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
+            <a href="https://github.com/Inward17/multi-tenant-saas-platform" target="_blank"><i
+                class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://multi-tenant-saas-platform-ten.vercel.app/" target="_blank"><i
+                class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
           </div>
         </div>
       </div>
@@ -217,10 +266,13 @@
           <div class="project-tags">
             <span>Three.js</span><span>React</span><span>Firebase</span><span>Firestore</span>
           </div>
-          <p class="project-desc">Designed a 3D knowledge graph representing urban infrastructure and interrelationships within a city model for interactive exploration.</p>
+          <p class="project-desc">Designed a 3D knowledge graph representing urban infrastructure and interrelationships
+            within a city model for interactive exploration.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/3D-City" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
-            <a href="https://d-city-68274.web.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
+            <a href="https://github.com/Inward17/3D-City" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub
+              ]</a>
+            <a href="https://d-city-68274.web.app/" target="_blank"><i
+                class="fa-solid fa-arrow-up-right-from-square"></i> [ Live Demo ]</a>
           </div>
         </div>
       </div>
@@ -232,9 +284,11 @@
           <div class="project-tags">
             <span>Node.js</span><span>Express</span><span>Gemini API</span><span>MangaDex</span>
           </div>
-          <p class="project-desc">Smart web app using Gemini 2.5 grounded search to find direct, validated reading links for manga, with built-in health checks and local caching.</p>
+          <p class="project-desc">Smart web app using Gemini 2.5 grounded search to find direct, validated reading links
+            for manga, with built-in health checks and local caching.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/ComicFinder" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://github.com/Inward17/ComicFinder" target="_blank"><i class="fa-brands fa-github"></i> [
+              GitHub ]</a>
           </div>
         </div>
       </div>
@@ -246,9 +300,11 @@
           <div class="project-tags">
             <span>Python</span><span>Telegram API</span><span>MongoDB</span><span>Groq API</span>
           </div>
-          <p class="project-desc">AI-powered Telegram bot that manages watchlists by automatically extracting titles from Shorts, Reels, and screenshots via visual recognition.</p>
+          <p class="project-desc">AI-powered Telegram bot that manages watchlists by automatically extracting titles
+            from Shorts, Reels, and screenshots via visual recognition.</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/Watchbot" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://github.com/Inward17/Watchbot" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub
+              ]</a>
           </div>
         </div>
       </div>
@@ -260,9 +316,11 @@
           <div class="project-tags">
             <span>React 19</span><span>Tailwind</span><span>FastAPI</span><span>Gemini LLM</span>
           </div>
-          <p class="project-desc">Intelligent recruitment platform that evaluates candidates through GitHub/LinkedIn analysis and multi-model AI scoring (BGE-Large, CodeBERT).</p>
+          <p class="project-desc">Intelligent recruitment platform that evaluates candidates through GitHub/LinkedIn
+            analysis and multi-model AI scoring (BGE-Large, CodeBERT).</p>
           <div class="project-links">
-            <a href="https://github.com/Inward17/ResumeAI" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub ]</a>
+            <a href="https://github.com/Inward17/ResumeAI" target="_blank"><i class="fa-brands fa-github"></i> [ GitHub
+              ]</a>
           </div>
         </div>
       </div>
@@ -272,7 +330,7 @@
   <section id="contact" class="contact">
     <h2 class="section-title animate-on-scroll" data-text="Initialize Link">Initialize Link</h2>
     <div class="contact-container animate-on-scroll">
-      <form class="contact-form" action="mailto:kotkarsarthak2004@gmail.com" method="POST" enctype="text/plain">
+      <form class="contact-form" id="contact-form">
         <div class="form-group">
           <input type="text" id="name" required>
           <label for="name">Name // Identity</label>
@@ -288,22 +346,25 @@
           <label for="message">Message // Payload</label>
           <div class="focus-border"></div>
         </div>
-        <button type="submit" class="btn btn-primary" style="align-self: flex-start;"><i class="fa-solid fa-paper-plane"></i> Transmit Data</button>
+        <button type="submit" class="btn btn-primary" style="align-self: flex-start;"><i
+            class="fa-solid fa-paper-plane"></i> Transmit Data</button>
       </form>
       <div class="social-links">
         <a href="https://github.com/Inward17" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/in/sarthak-kotkar-6271ab257" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://linkedin.com/in/sarthak-kotkar-6271ab257" target="_blank" title="LinkedIn"><i
+            class="fa-brands fa-linkedin"></i></a>
         <a href="mailto:kotkarsarthak2004@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="tel:9423570008" title="Phone"><i class="fa-solid fa-phone"></i></a>
+        <a href="tel:+919423570008" title="Phone"><i class="fa-solid fa-phone"></i></a>
       </div>
     </div>
   </section>
 
   <footer>
     <p>Sarthak Ajit Kotkar &copy; 2026</p>
-    <p class="tagline">Built with Three.js & too much coffee ☕</p>
+    <p class="tagline">Built with D3.js & too much coffee ☕</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
