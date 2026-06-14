@@ -13,7 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none; /* Hide default cursor */
+  cursor: none !important; /* Hide default cursor */
 }
 
 html {
@@ -514,7 +514,6 @@ section {
   white-space: nowrap;
   transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   z-index: 10;
-  cursor: pointer;
 }
 .network-node:hover, .network-node.highlight {
   border-color: var(--cyan);
@@ -708,7 +707,7 @@ footer .tagline { font-size: 0.85rem; color: var(--text-muted); }
     background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-color) 100%);
   }
   .nav-links { display: none; } /* Simplified for demo, would add hamburger logic */
-  * { cursor: auto; }
+  * { cursor: auto !important; }
   .cursor-dot, .cursor-trail { display: none; }
 }
 

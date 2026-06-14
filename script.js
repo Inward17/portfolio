@@ -10,12 +10,12 @@ if (!isMobile && !prefersReducedMotion) {
   let mouseX = 0, mouseY = 0;
   let trailX = 0, trailY = 0;
 
-  window.addEventListener('mousemove', (e) => {
+  window.addEventListener('pointermove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     cursorDot.style.left = mouseX + 'px';
     cursorDot.style.top = mouseY + 'px';
-  });
+  }, { capture: true });
 
   function animateCursor() {
     // Smooth trailing
